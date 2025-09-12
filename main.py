@@ -7,13 +7,11 @@ from PIL import Image
 
 vocab = {'<pad>': 0, 'a': 1, 'closed': 2, 'fist': 3, 'open': 4, 'palm': 5}
 vocab_size = len(vocab)
-max_seq_len = 5  # 假设文本描述最长为5个词
+max_seq_len = 5  
 
-# 文本描述: "a closed fist"
+
 text_description = "a closed fist"
-# 将文本转换为 token IDs
 token_ids = [vocab.get(word, 0) for word in text_description.split()]
-# 填充到最大长度
 token_ids += [vocab['<pad>']] * (max_seq_len - len(token_ids))
 # 转换为 PyTorch Tensor (batch_size=1, seq_len=5)
 text_tensor = torch.LongTensor(token_ids).unsqueeze(0)
@@ -66,7 +64,6 @@ class CrossAttentionModel(nn.Module):
 
         # 图像特征的维度
         # 经过 SimpleImageEncoder 后, 输出是 [batch, 16, 64, 64]
-        # 我们需要把它转换成 MultiheadAttention 能接受的格式
         img_feature_channels = 16
         # 将卷积层的输出通道数调整为与 embed_dim 一致，以便进行注意力计算
         self.img_proj = nn.Conv2d(img_feature_channels, embed_dim, kernel_size=1)
@@ -87,7 +84,6 @@ class CrossAttentionModel(nn.Module):
 
         # 2. 准备 Cross-Attention 的输入 (Query, Key, Value)
 
-        # Query (Q): 来自文本。它代表“我们要问什么/关注什么”。
         # shape: [batch, seq_len, embed_dim]
         query = text_features
 
