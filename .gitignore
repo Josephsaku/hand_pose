@@ -1,0 +1,26 @@
+__pycache__/
+*.pyc
+
+# IDE / Editor specific files
+.idea/
+.vscode/
+
+# Dataset folder
+# 警告：数据集文件夹通常非常大，绝对不要上传！
+data/
+
+# Trained models
+# 模型文件也很大，通常不直接上传到Git
+*.pth
+*.pt
+*.onnx
+
+# Environment files
+.env
+venv/
+env/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
