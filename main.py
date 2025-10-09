@@ -76,9 +76,9 @@
 # torch.save(model.state_dict(), 'hand_pose_model.pth')
 # print("模型已保存到 hand_pose_model.pth")
 
-# main.py (最终正确、功能完善的版本)
+# main.py
 import torch
-import torch.nn as nn  # 确保这个 import 存在
+import torch.nn as nn
 from torch.utils.data import DataLoader
 from torchvision import transforms
 import os
