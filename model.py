@@ -17,7 +17,6 @@ class ResNetImageEncoder(nn.Module):
         self.output_channels = 512
 
         # 移除最后的平均池化层 (avgpool) 和全连接层 (fc)
-        # 我们需要的是卷积层提取的特征图
         self.feature_extractor = nn.Sequential(*list(resnet.children())[:-2])
 
     def forward(self, x):
@@ -40,7 +39,7 @@ class HandPoseModel(nn.Module):
     def __init__(self, vocab_size, embed_dim=64, num_heads=8, num_joints=21):
         super().__init__()
 
-        # 使用新的 ResNet 图像编码器
+        # 使用 ResNet 图像编码器
         self.image_encoder = ResNetImageEncoder()
 
         self.text_encoder = SimpleTextEncoder(vocab_size, embed_dim)

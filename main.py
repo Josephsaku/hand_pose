@@ -1,4 +1,4 @@
-# # main.py (最终训练版本)
+# # main.py
 # import torch
 # import torch.nn as nn
 # from torch.utils.data import DataLoader
