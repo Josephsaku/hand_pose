@@ -1,4 +1,4 @@
-# model.py (替换为这个新版本)
+# model.py 
 import torch
 import torch.nn as nn
 import torchvision.models as models
